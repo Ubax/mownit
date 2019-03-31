@@ -26,7 +26,7 @@ function better_multiplication(A,B)
     C
 end
 
-x = 5:25:105
+x = 50:50:500 
 
 naive = zeros(0)
 better = zeros(0)
@@ -50,5 +50,5 @@ analysis = by(data, :Size, :Naive=>mean, :Better=>mean, :Blas=>mean, :Naive=>std
 
 dataPlot = plot(analysis[:Size], analysis[:Naive_mean], yerror=analysis[:Naive_std], 
     label="Naive", title="Matrix multiplication methods comaprision", xlabel="size", ylabel="time")
-plot!(dataPlot, analysis[:Better_mean], yerror=analysis[:Better_std], label = "Better")
-plot!(dataPlot, analysis[:Blas_mean], yerror=analysis[:Blas_std], label = "Blas")
+plot!(dataPlot, analysis[:Size], analysis[:Better_mean], yerror=analysis[:Better_std], label = "Better")
+plot!(dataPlot, analysis[:Size], analysis[:Blas_mean], yerror=analysis[:Blas_std], label = "Blas")
