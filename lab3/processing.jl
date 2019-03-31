@@ -9,3 +9,7 @@ dataPlot = plot(analisys[:Size], analisys[:Naive_mean], yerr=analisys[:Naive_std
 plot!(dataPlot, analisys[:Size], analisys[:Better_mean], yerr=analisys[:Better_std], label="Better")
 plot!(dataPlot, analisys[:Size], analisys[:Blas_mean], yerr=analisys[:Blas_std], label="Blas")
 display(dataPlot)
+
+naivePoly = polyfit(analysis[:Size], analysis[:Naive_mean])
+betterPoly = polyfit(analysis[:Size], analysis[:Better_mean])
+blasPoly = polyfit(analysis[:Size], analysis[:Blas_mean])

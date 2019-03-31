@@ -52,3 +52,7 @@ dataPlot = plot(analysis[:Size], analysis[:Naive_mean], yerror=analysis[:Naive_s
     label="Naive", title="Matrix multiplication methods comaprision", xlabel="size", ylabel="time")
 plot!(dataPlot, analysis[:Size], analysis[:Better_mean], yerror=analysis[:Better_std], label = "Better")
 plot!(dataPlot, analysis[:Size], analysis[:Blas_mean], yerror=analysis[:Blas_std], label = "Blas")
+
+naivePoly = polyfit(analysis[:Size], analysis[:Naive_mean])
+betterPoly = polyfit(analysis[:Size], analysis[:Better_mean])
+blasPoly = polyfit(analysis[:Size], analysis[:Blas_mean])
