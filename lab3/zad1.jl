@@ -1,6 +1,7 @@
 using Plots
 using DataFrames
 using Statistics
+using Polynomials
 
 function naive_multiplication(A,B)
     C=zeros(Float64, size(A,1), size(B,2))
@@ -53,6 +54,20 @@ dataPlot = plot(analysis[:Size], analysis[:Naive_mean], yerror=analysis[:Naive_s
 plot!(dataPlot, analysis[:Size], analysis[:Better_mean], yerror=analysis[:Better_std], label = "Better")
 plot!(dataPlot, analysis[:Size], analysis[:Blas_mean], yerror=analysis[:Blas_std], label = "Blas")
 
-naivePoly = polyfit(analysis[:Size], analysis[:Naive_mean])
-betterPoly = polyfit(analysis[:Size], analysis[:Better_mean])
-blasPoly = polyfit(analysis[:Size], analysis[:Blas_mean])
+naivePoly = polyfit(analysis[:Size], analysis[:Naive_mean], 3)
+betterPoly = polyfit(analysis[:Size], analysis[:Better_mean], 3)
+blasPoly = polyfit(analysis[:Size], analysis[:Blas_mean], 3)
+
+
+naivePolyArray = zeros(0)
+betterPolyArray = zeros(0)
+blasPolyArray = zeros(0)
+for i=x
+    append!(naivePolyArray, naivePoly(i))
+    append!(betterPolyArray, betterPoly(i))
+    append!(blasPolyArray, blasPoly(i))
+end
+
+plot!(dataPlot, analysis[:Size], naivePolyArray, label = "Poly naive")
+plot!(dataPlot, analysis[:Size], betterPolyArray, label = "Poly better")
+plot!(dataPlot, analysis[:Size], blasPolyArray, label = "Poly blas")
