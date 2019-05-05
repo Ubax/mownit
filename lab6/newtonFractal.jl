@@ -1,4 +1,4 @@
-using Roots  
+using Roots
 using Images
 using ForwardDiff
 using FileIO
@@ -7,7 +7,7 @@ using FileIO
     c = v * s
     x = c * (1 - abs(((h/60) % 2) - 1))
     m = v - c
- 
+
     r,g,b =
         if h < 60
             (c, x, 0)
@@ -22,14 +22,14 @@ using FileIO
         else
             (c, 0, x)
         end
- 
+
     Float64(b + m), Float64(g + m), Float64(r + m)
 end
 
 f = x->x^3-1
 df = x->3*x^2
 ratio = 1000
-w, h = 8*ratio, 6*ratio
+w, h = 16*ratio, 12*ratio
 img = Array{RGB{Float64}}(undef, h, w)
 
 res = Array{Float64}(undef, h, w)
@@ -59,4 +59,4 @@ for i=1:w
     end
 end
 
-save("NF.jpg", img)
+save("img/NF-16000x12000.bmp", img)
