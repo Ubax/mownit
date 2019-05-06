@@ -170,7 +170,7 @@ ggplot()+
     \end{lstlisting}
     \subsubsection{Wykres}
     \begin{figure}[h]
-        \center{\includegraphics[width=\textwidth]{lagrangePlot.png}}
+        \center{\includegraphics[width=\textwidth]{lagrangePlot.pdf}}
         \caption{\label{fig:lagrangePlot} Wykres interpolacji metodą Lagrangea}
     \end{figure}
 
@@ -246,7 +246,7 @@ double F(int a, int b, std::vector<Node> nodes) {
     Kod w języku R do rysowania wykresu jest analogiczny jak w przypadku omawiania metody Lagrange'a.
 
     \begin{figure}[h]
-        \center{\includegraphics[width=\textwidth]{newton.png}}
+        \center{\includegraphics[width=\textwidth]{newton.pdf}}
         \caption{\label{fig:newtonPlot} Wykres interpolacji metodą Newtona}
     \end{figure}
 
@@ -272,7 +272,7 @@ double F(int a, int b, std::vector<Node> nodes) {
     \subsection{Wykres}
     Z uwagi na zastosowanie funkcji z biblioteki gsl, wykres generowałem tylko na przedziale od pierwszego do ostatniego punktu włącznie.
     \begin{figure}[h]
-        \center{\includegraphics[width=\textwidth]{all.png}}
+        \center{\includegraphics[width=\textwidth]{all.pdf}}
         \caption{\label{fig:allPoly} Wykres interpolacji (czerowny - newton, zielony - lagrange, czarny - gsl)}
     \end{figure}
 
@@ -322,7 +322,7 @@ analysis = data.frame(
     
     \subsection{Wykres}
     \begin{figure}[h]
-        \center{\includegraphics[width=\textwidth]{spline.png}}
+        \center{\includegraphics[width=\textwidth]{spline.pdf}}
         \caption{\label{fig:splines} Wykres funkcji sklejanych (zielony - cubic, czarny - liniowa)}
     \end{figure}
 
@@ -330,7 +330,7 @@ analysis = data.frame(
     
     \section{Porównanie z interpolacją wielomianową}
     \begin{figure}[h]
-        \center{\includegraphics[width=\textwidth]{splineNewton.png}}
+        \center{\includegraphics[width=\textwidth]{splineNewton.pdf}}
         \caption{\label{fig:splinesAndPolys} Porównanie funkcji sklejanych i wielomianów (czerwony - wielomian, zielony - cubic, czarny - liniowa)}
     \end{figure}
     
@@ -344,10 +344,46 @@ analysis = data.frame(
     \subsection{Ilustracja efektu Rungego}
     W celu ilustracji efektu Rungego na jednym wykresie umieściłem funkcję sklejaną oraz wykres wielomianu otrzymanego z metody Newtona
     \begin{figure}[h]
-        \center{\includegraphics[width=\textwidth]{efekt.png}}
+        \center{\includegraphics[width=\textwidth]{efekt.pdf}}
         \caption{\label{fig:rungeg} Efekt Rungego (czerwony - wielomian, czarny - funkcja sklejana)}
     \end{figure}
     
     Możemy zauważyć iż między punktami 5 i 10 wielomian przyjmuje maksimum. Patrząc na oś y widimy że jest ono ok 100 krotnie większe niż analogiczne otrzymane
     za pomocą funkcji sklejanych.
+
+    \section{Grafika komputerowa}
+    Interpolacja jest często wykorzystywana przy skalowaniu obrazów. Przy ilustracji działania każdej z metod skalowałem obraz lwa.
+    \begin{figure}[h]
+        \center{\includegraphics[width=100px]{small.png}}
+        \caption{\label{fig:rungeg} Obraz bazowy (100x90)}
+    \end{figure}
+    
+    \subsection{Interpolacja nabliższego sąsiada}
+    Metoda nabliższego sąsiada polega na kopiowaniu wartości pixela z pixela sąsiedniego
+    \begin{figure}[h]
+        \center{\includegraphics[width=250px]{nearest.pdf}}
+        \caption{\label{fig:rungeg} Obrazowanie działania metody najbliższego sąsiada}
+    \end{figure}
+    \begin{figure}[h]
+        \center{\includegraphics[width=330px]{none.png}}
+        \caption{\label{fig:rungeg} Powiększenie metody najbliższego sąsiada}
+    \end{figure}
+    
+    \pagebreak
+
+    \subsection{Interpolacja liniowa}
+    Wartość piksela jest wyliczana z funkcji interpolującej dwa sąsiednie piksele
+    \begin{figure}[h]
+        \center{\includegraphics[width=330px]{linear.png}}
+        \caption{\label{fig:rungeg} Powiększenie metody interpolacji liniowej}
+    \end{figure}
+
+    \pagebreak
+
+    \subsection{Interpolacja kubiczna}
+    Działa analogicznie jak liniowa, tylko że wykorzystuje funkcje sześcienne. Obraz otrzymany tą metodą jest bardziej rozmazany lecz wydaje się być bardziej naturalny.
+    \begin{figure}[h]
+        \center{\includegraphics[width=330px]{cubic.png}}
+        \caption{\label{fig:rungeg} Powiększenie metody interpolacji kubicznej}
+    \end{figure}
 \end{document}
